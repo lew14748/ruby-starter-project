@@ -37,4 +37,41 @@ RSpec.describe Converter do
             it { expect(Converter.converts_from_kelvin_to_fahrenheit(0)).to eq -459.67 }
         end
     end
+    
+    describe()
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Celsius to Fahrenheit' do
+            it { expect(Converter.conversion(10, "C", "F")).to eq 50 }
+        end
+    end
+
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Celsius to Kelvin' do
+            it { expect(Converter.conversion(10, "C", "K")).to eq 283.15 }
+        end
+    end
+    
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Kelvin to Fahrenheit' do
+            it { expect(Converter.conversion(10, "K", "F")).to eq -441.67 }
+        end
+    end
+    
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Kelvin to Celsius' do
+            it { expect(Converter.conversion(10, "K", "C")).to eq -263.15 }
+        end
+    end
+    
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Fahrenheit to Celsius' do
+            it { expect(Converter.conversion(10, "F", "C")).to eq -12.22 }
+        end
+    end
+    
+    describe 'conversion' do 
+        context 'Conversion from 10 degrees Fahrenheit to Kelvin' do
+            it { expect(Converter.conversion(10, "F", "K")).to eq 260.93 }
+        end
+    end
 end
