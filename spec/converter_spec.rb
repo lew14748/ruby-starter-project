@@ -38,7 +38,6 @@ RSpec.describe Converter do
         end
     end
     
-    describe()
     describe 'conversion' do 
         context 'Conversion from 10 degrees Celsius to Fahrenheit' do
             it { expect(Converter.conversion(10, "C", "F")).to eq 50 }

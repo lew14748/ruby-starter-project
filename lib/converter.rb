@@ -62,5 +62,3 @@ class Converter
         end
     end
 end
-
-puts Converter.conversion(10, "C", "F")
