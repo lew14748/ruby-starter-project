@@ -1,50 +1,67 @@
 require_relative 'converter'
 class IOManager
+  @current_state = 0
 
-    def self.input_initial_degree
+  def go_to_next_state
+    @current_state += 1
+  end
 
-        temp = nil
-
-        loop do
-            puts 'enter degree value:'
-            temp = gets.chomp
-            break if temp.match(Regexp.new(/\A[-+]?[0-9]*\.?[0-9]+\Z/))
-        end
-
-        temp.to_f
+  def input_initial_degree
+    puts 'Enter degree value:'
+    temp = gets.chomp
+    if temp.match(Regexp.new(/\A[-+]?[0-9]*\.?[0-9]+\Z/))
+      go_to_next_state
+      temp.to_f
+    else
+      puts 'Seems like yo entered incorrect source scale'
+      false
     end
-    
-    def self.input_source_scale
-        source_scale = nil
-        loop do
-            puts 'Enter source scale(C/F/K):'
+  end
 
-            source_scale = gets.chomp.upcase
-            break if ["C", "F", "K"].include? source_scale
-        end
+  def input_source_scale
+    puts 'Enter source scale(C/F/K):'
 
-        return source_scale 
+    source_scale = gets.chomp.upcase
+    if %w[C F K].include? source_scale
+      go_to_next_state
+      source_scale
+    else
+      puts 'Seems like yo entered incorrect source scale'
+      false
     end
+  end
 
-    def self.input_target_scale
-        target_scale = nil
-        loop do
-            puts 'Enter target scale(C/F/K):'
+  def input_target_scale
+    puts 'Enter target scale(C/F/K):'
 
-            target_scale = gets.chomp.upcase
-            break if ["C", "F", "K"].include? target_scale
-        end
-
-        return target_scale 
+    target_scale = gets.chomp.upcase
+    if %w[C F K].include? target_scale
+      go_to_next_state
+      target_scale
+    else
+      puts 'Seems like you entered incorrect target scale'
+      false
     end
+  end
 
-    def self.launch
+  def launch
+    @current_state = 0
+    degrees = 0
+    source_scale = nil
+    target_scale = nil
+    loop do
+      case @current_state
+      when 0
         degrees = input_initial_degree
+      when 1
         source_scale = input_source_scale
+      when 2
         target_scale = input_target_scale
+      when 3
         result = Converter.conversion(degrees, source_scale, target_scale)
         puts "#{degrees} #{source_scale} = #{result} #{target_scale}"
+        return result
+      end
     end
+  end
 end
-
-puts IOManager.launch
