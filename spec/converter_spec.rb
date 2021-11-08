@@ -1,4 +1,4 @@
-require './../lib/converter'
+require_relative './../lib/converter'
 
 RSpec.describe Converter do
   describe 'converts_from_kelvin_to_celsius' do
