@@ -1,5 +1,4 @@
-require './../lib/io_manager'
-require 'stringio'
+require_relative './../lib/io_manager'
 RSpec.describe IOManager do
   describe 'launch' do
     it 'converts 12 C to 53.6 F' do
